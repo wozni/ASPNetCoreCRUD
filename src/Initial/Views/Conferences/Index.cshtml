@@ -1,0 +1,15 @@
+﻿@model Initial.Models.ConferenceListModel[]
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<ul>
+@foreach (var conference in Model)
+{
+    <li>@conference.Name (Sessions: @conference.SessionCount, Attendees: @conference.AttendeeCount)
+        <a asp-controller="Conferences" asp-action="Edit" asp-route-eventName="@conference.Name">Edit</a>
+    </li>
+}
+</ul>
