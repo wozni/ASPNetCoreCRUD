@@ -49,6 +49,26 @@ namespace Initial.Controllers
 
             return View(model);
         }
+
+        public IActionResult Create()
+        {
+            return View("Create");
+        }
+
+        [HttpPost]
+        public IActionResult Create(ConferenceCreateModel form)
+        {
+            if (ModelState.IsValid)
+            {
+                var conf = new Conference
+                {
+                    Name = form.Name
+                };
+                repository.Create(conf);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
         
         [HttpPost]
         public ActionResult Edit(ConferenceEditModel form)
@@ -68,8 +88,15 @@ namespace Initial.Controllers
 
                 attendee.ChangeName(attendeeEditModel.FirstName, attendeeEditModel.LastName);
             }
-            repository.Save(conf);
+            repository.Update(conf);
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            repository.Delete(id);
             return RedirectToAction("Index");
         }
     }
