@@ -34,8 +34,8 @@ namespace Initial.Models
                         },
                         Attendees = new List<Attendee>
                         {
-                            new Attendee("Marcin", "Woźniak"),
-                            new Attendee("Adam", "Baszyński"),
+                            new Attendee("Marcin", "Woźniak", "mwozniak@gmail.com"),
+                            new Attendee("Adam", "Baszyński", "abaszynski@gmail.com"),
                         }
                             
                     }

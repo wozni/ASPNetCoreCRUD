@@ -47,6 +47,7 @@ namespace Initial.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    EMail = table.Column<string>(nullable: true),
                     SessionId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

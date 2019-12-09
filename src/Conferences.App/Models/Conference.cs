@@ -6,7 +6,6 @@ namespace Initial.Models
     public class Conference
     {
         public int Id { get; set; }
-     
         public string Name { get; set; }
         public List<Session> Sessions { get; set; }
 
@@ -14,8 +13,7 @@ namespace Initial.Models
 
         public int AttendeeCount => Sessions.SelectMany(s => s.Attendees).Count();
 
-        public IEnumerable<Attendee> GetAttendees() =>
-            Sessions.SelectMany(s => s.Attendees);
+        public IEnumerable<Attendee> GetAttendees() => Sessions.SelectMany(s => s.Attendees);
 
         public void ChangeName(string newName)
         {

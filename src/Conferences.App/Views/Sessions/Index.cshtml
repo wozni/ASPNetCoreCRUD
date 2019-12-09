@@ -1,0 +1,16 @@
+@model SessionListModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>@Model.ConferenceName</h2>
+<ul>
+    @foreach (var session in Model.Sessions)
+    {
+        <li>@session.Name</li>
+    }
+</ul>
+
+<a asp-controller="Conferences" asp-action="Index">Back</a>
