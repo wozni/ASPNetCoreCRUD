@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conferences.App", "src\Conferences.App\Conferences.App.csproj", "{5968E60C-68F6-473D-B6B3-713BD36CACB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conferences.AppImproved", "src\Conferences.AppImproved\Conferences.AppImproved.csproj", "{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{5968E60C-68F6-473D-B6B3-713BD36CACB8}.Release|x64.Build.0 = Release|Any CPU
 		{5968E60C-68F6-473D-B6B3-713BD36CACB8}.Release|x86.ActiveCfg = Release|Any CPU
 		{5968E60C-68F6-473D-B6B3-713BD36CACB8}.Release|x86.Build.0 = Release|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Debug|x64.Build.0 = Debug|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Debug|x86.Build.0 = Debug|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Release|x64.ActiveCfg = Release|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Release|x64.Build.0 = Release|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{A6DC74AC-990F-46D1-AC7C-C1527789F1A1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
