@@ -13,18 +13,11 @@ namespace Initial.Models
             
             public string EMail { get; set; }
         }
-
-        public class SessionModel
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
         
         public int Id { get; set; }
         
         public string Name { get; set; }
         
         public List<AttendeeEditModel> Attendees { get; set; }
-        public List<SessionModel> Sessions { get; set; }
     }
 }

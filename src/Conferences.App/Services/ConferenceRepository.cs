@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Initial.Services
 {
-    class EntityFrameworkConferenceRepository : IConferenceRepository
+    class ConferenceRepository : IConferenceRepository
     {
         private readonly ConferenceContext conferenceContext;
 
-        public EntityFrameworkConferenceRepository(ConferenceContext conferenceContext)
+        public ConferenceRepository(ConferenceContext conferenceContext)
         {
             this.conferenceContext = conferenceContext;
         }
@@ -18,7 +18,8 @@ namespace Initial.Services
         {
             return this.conferenceContext.Conferences
                 .Include(c => c.Sessions)
-                .ThenInclude(s => s.Attendees);
+                .ThenInclude(s => s.Attendees)
+                .ToList();
         }
 
         public Conference GetByName(string name)
@@ -40,7 +41,7 @@ namespace Initial.Services
         public void Create(Conference conference)
         {
             conferenceContext.Conferences.Add(conference);
-            conferenceContext.SaveChangesAsync();
+            conferenceContext.SaveChanges();
         }
 
         public void Delete(int conferenceId)

@@ -20,7 +20,6 @@ namespace Initial.Controllers
         public ActionResult Index(int? minSessions)
         {
             minSessions ??= 0;
-
             var list = (from conf in repository.GetAllConferences()
                 where conf.SessionCount >= minSessions
                 select new ConferenceListModel
@@ -57,28 +56,24 @@ namespace Initial.Controllers
         public ActionResult Edit(string eventName)
         {
             var conf = repository.GetByName(eventName);
-
-            var model = new ConferenceEditModel
+            if (conf != null)
             {
-                Id = conf.Id,
-                Name = conf.Name,
-                Sessions = conf.Sessions
-                    .Select(s => new ConferenceEditModel.SessionModel
-                    {
-                        Id = s.Id,
-                        Name = s.Title
-                    }).ToList(),
-                Attendees = conf.GetAttendees()
-                    .Select(a => new ConferenceEditModel.AttendeeEditModel
-                    {
-                        Id = a.Id,
-                        FirstName = a.FirstName,
-                        LastName = a.LastName,
-                        EMail = a.EMail
-                    }).ToList()
-            };
-
-            return View(model);
+                var model = new ConferenceEditModel
+                {
+                    Id = conf.Id,
+                    Name = conf.Name,
+                    Attendees = conf.GetAttendees()
+                        .Select(a => new ConferenceEditModel.AttendeeEditModel
+                        {
+                            Id = a.Id,
+                            FirstName = a.FirstName,
+                            LastName = a.LastName,
+                            EMail = a.EMail
+                        }).ToList()
+                };
+                return View(model);
+            }
+            return View("Index");
         }
 
      
@@ -100,19 +95,45 @@ namespace Initial.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult RegisterAttendee(string conferenceName)
+        {
+            var conference = repository.GetByName(conferenceName);
+            if (conference != null)
+            {
+                var model = new ConferenceRegisterAttendeeModel
+                {
+                    Sessions = conference.Sessions
+                        .Select(s => new ConferenceRegisterAttendeeModel.SessionModel
+                        {
+                            Id = s.Id,
+                            Name = s.Title
+                        }).ToList(),
+                    ConferenceName = conferenceName
+                };
+                return View(model);
+            }
+            return View("Index");
+        }
+        
+        
         [HttpPost]
         public IActionResult RegisterAttendee(ConferenceRegisterAttendeeModel form)
         {
             var conference = repository.GetByName(form.ConferenceName);
-            var session = conference.Sessions.FirstOrDefault(s => s.Id == form.SessionId);
-            var newAttendee = new Attendee(form.FirstName, form.LastName, form.EMail);
-            session.Attendees.Add(newAttendee);
-            repository.Update(conference);
-            emailSender.NotifyAboutRegistration(newAttendee);
-            return RedirectToAction("Edit", new
+            var session = conference?.Sessions.FirstOrDefault(s => s.Id == form.SessionId);
+            if (session != null)
             {
-                eventName = form.ConferenceName
-            });
+                var newAttendee = new Attendee(form.FirstName, form.LastName, form.EMail);
+                session.Attendees.Add(newAttendee);
+                repository.Update(conference);
+                emailSender.NotifyAboutRegistration(newAttendee);
+                return RedirectToAction("Edit", new
+                {
+                    eventName = form.ConferenceName
+                });
+            }
+            return View();
         }
         
         [HttpGet]

@@ -27,7 +27,8 @@ namespace Initial
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IConferenceRepository, EntityFrameworkConferenceRepository>();
+            services.AddScoped<IConferenceRepository, ConferenceRepository>();
+            services.AddScoped<IEmailSender, FakeEmailSender>();
             services.AddDbContext<ConferenceContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Conferences"));

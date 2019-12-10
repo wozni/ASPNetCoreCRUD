@@ -12,6 +12,8 @@
             @conference.Name (Sessions: @conference.SessionCount, Attendees: @conference.AttendeeCount)
             <a asp-controller="Conferences" asp-action="Edit" asp-route-eventName="@conference.Name"
                class="btn btn-info">Edit</a>
+            <a asp-controller="Conferences" asp-action="RegisterAttendee" asp-route-conferenceName="@conference.Name"
+                           class="btn btn-info">Register Attendee</a>
             <a asp-controller="Conferences" asp-action="Delete" asp-route-id="@conference.Id"
                class="btn btn-danger right">Delete</a>
         </li>
