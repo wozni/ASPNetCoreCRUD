@@ -18,8 +18,15 @@ namespace Initial.Models
         public Conference(string name)
         {
             this.Name = name;
-            Publish(new ConferenceCreatedEvent(this));
         }
+
+        public static Conference Create(string name)
+        {
+            var conference = new Conference(name);
+            conference.Publish(new ConferenceCreatedEvent(conference));
+            return conference;
+        }
+        
         
         public void ChangeName(string newName)
         {

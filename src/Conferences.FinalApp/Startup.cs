@@ -51,6 +51,7 @@ namespace Initial
                 .AddSerilog(
                     new LoggerConfiguration()
                         .WriteTo.Console()
+                        .WriteTo.Seq("http://localhost:5341")
                         .CreateLogger()));
             
             services.AddScoped<IEmailSender, FakeEmailSender>();

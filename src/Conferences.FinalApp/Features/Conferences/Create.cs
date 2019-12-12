@@ -48,7 +48,7 @@ namespace Initial.Features.Conferences
                 {
                     Succeeded = true
                 };
-                var conference = new Conference(command.Name);
+                var conference = Conference.Create(command.Name);
                 context.Conferences.Add(conference);
                 return response;
             }
